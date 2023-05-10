@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    .card-img-top{
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-3 mx-auto">
+            <div class="card">
+                <img class="card-img-top" src="/static/images/upload.jpg" alt="">
+                <div class="card-body p-1">
+                    <a href="#"  data-toggle="modal" data-target="#uploadModal" class="btn btn-success btn-sm btn-block">Upload</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card">
+                <img class="card-img-top" src="/{{doc.path}}" alt="">
+               {{session.last_prediction}} 
+               {{confidence}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<style>
+    
+</style>
+{% endblock %}
