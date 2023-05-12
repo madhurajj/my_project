@@ -1,5 +1,4 @@
 import os
-from xml.dom.minidom import Document
 from flask.globals import request
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -11,7 +10,7 @@ from utils import validate_email
 from werkzeug.utils import secure_filename
 from predictor import *
 from tensorflow.keras.models import load_model
-
+from PIL import Image, ImageChops, ImageEnhance
 from flask import Flask,session,flash,redirect,render_template,url_for
 
 app = Flask(__name__)
@@ -148,7 +147,14 @@ def predict(doc_id):
     model = load_tf_model()
     prediction,confidence = make_prediction(model, doc.path)
     session_add('last_prediction', prediction)
-    return render_template('predict.html',prediction=prediction,title='Prediction', confidence=confidence, doc=doc)
+    filename = os.path.basename(doc.path)
+    name,ext = os.path.splitext(filename)
+    ela_path = os.path.join('static','ela', filename)
+    # enhance the image brightness
+    ela_image = Image.open(ela_path)
+    ela_image = ImageEnhance.Brightness(ela_image).enhance(1.5)
+    ela_image.save(ela_path)
+    return render_template('predict.html',prediction=prediction,title='Prediction', confidence=confidence, doc=doc, ela_filename=ela_path)
 
 
 @app.route('/logout')

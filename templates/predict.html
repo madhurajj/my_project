@@ -3,7 +3,6 @@
 {% block css %}
 <style>
     .card-img-top{
-        height: 200px;
         object-fit: cover;
     }
 </style>
@@ -11,7 +10,7 @@
 {% block body %}
 <div class="container">
     <div class="row my-5">
-        <div class="col-md-3 mx-auto">
+        <div class="col-md-2 mx-auto">
             <div class="card">
                 <img class="card-img-top" src="/static/images/upload.jpg" alt="">
                 <div class="card-body p-1">
@@ -19,14 +18,20 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-9">
+        <div class="col-md-4">
             <div class="card">
                 <img class="card-img-top" src="/{{doc.path}}" alt="">
-               {{session.last_prediction}} 
-               {{confidence}}
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="/{{ela_filename}}" alt="">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <h1 class="display-1">{{session.last_prediction}} </h1>
+            <p class="lead">Confidence {{confidence}}</p>
+        </div>    
     </div>
 </div>
 {% endblock %}

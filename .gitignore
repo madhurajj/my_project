@@ -1,1 +1,10 @@
 *.h5
+*.cpython-39.pyc
+__pycache__/predictor.cpython-310.pyc
+.gitignore
+.gitignore
+.gitignore
+__pycache__/project_orm.cpython-310.pyc
+.gitignore
+__pycache__/predictor.cpython-311.pyc
+__pycache__/predictor.cpython-311.pyc
