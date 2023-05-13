@@ -2,35 +2,42 @@
 
 {% block css %}
 <style>
-    .card-img-top{
-        object-fit: cover;
-    }
+    
+        body{
+            
+            background-repeat: no-repeat;
+            background-position: right;
+            }
+    
+           .card-img-top{
+            object-fit: cover;
+             }
 </style>
 {% endblock %}
 {% block body %}
 <div class="container">
     <div class="row my-5">
-        <div class="col-md-2 mx-auto">
+        
+        <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="/static/images/upload.jpg" alt="">
+                <img class="card-img-top" src="/{{doc.path}}" alt="">
                 <div class="card-body p-1">
-                    <a href="#"  data-toggle="modal" data-target="#uploadModal" class="btn btn-success btn-sm btn-block">Upload</a>
+                    <a   data-toggle="modal"  class="nav justify-content-center">Uploaded doc</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="/{{doc.path}}" alt="">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
                 <img class="card-img-top" src="/{{ela_filename}}" alt="">
+                <div class="card-body p-1">
+                    <a   data-toggle="modal" class="nav justify-content-center" >ELA Design</a>
+                </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <h1 class="display-1">{{session.last_prediction}} </h1>
+        <div class="col-md-3">
+            <h1 class="display-2" >{{session.last_prediction}} </h1>
             <p class="lead">Confidence {{confidence}}</p>
+            {{fig|safe}}
         </div>    
     </div>
 </div>

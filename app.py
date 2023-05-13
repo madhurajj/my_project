@@ -154,7 +154,11 @@ def predict(doc_id):
     ela_image = Image.open(ela_path)
     ela_image = ImageEnhance.Brightness(ela_image).enhance(1.5)
     ela_image.save(ela_path)
-    return render_template('predict.html',prediction=prediction,title='Prediction', confidence=confidence, doc=doc, ela_filename=ela_path)
+    import plotly.express as px
+    confidence = 90
+    nc = abs(100-confidence)
+    fig = px.pie(values=[confidence, nc], names=['Confidence', 'Non-Confidence'], title='Confidence Pie Chart')
+    return render_template('predict.html',prediction=prediction,title='Prediction', confidence=confidence, doc=doc, ela_filename=ela_path, fig = fig.to_html())
 
 
 @app.route('/logout')
